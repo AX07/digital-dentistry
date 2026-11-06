@@ -31,15 +31,20 @@ window.CLINIC = {
   clinics: [
     {
       id: 'lisboa', city: 'Lisboa', area: { pt: 'Avenidas Novas', en: 'Avenidas Novas' },
-      lines: ['Av. Miguel Bombarda 133A', 'Avenidas Novas, Lisboa'],
+      lines: ['Av. Miguel Bombarda 133A', '1050-164 Lisboa'],
+      // the nearest metro stations: São Sebastião (about 400 m) and Saldanha (about 500 m)
+      how: { pt: 'A poucos minutos a pé do metro São Sebastião (linhas azul e vermelha) e Saldanha (linhas amarela e vermelha).', en: 'A few minutes’ walk from São Sebastião (blue and red lines) and Saldanha (yellow and red lines) metro stations.' },
       phone: '+351961931629', phoneLabel: '961 931 629', whatsapp: true,
       maps: 'https://maps.app.goo.gl/u6oPxiDJUjbkGFhY9', geo: [38.7363531, -9.1507482],
-      hours: null,   // TEMPLATE: Google shows only "opens 10 am" for Lisbon. Fill in, e.g. { 1: [[10, 19]], … }
+      hours: { 0: null, 1: [[10, 16]], 2: [[10, 16]], 3: [[10, 16]], 4: [[10, 16]], 5: [[10, 16]], 6: null },   // Google, 6 November 2026. TEMPLATE: confirm with the clinic
       reviews: null, // no Google reviews yet
     },
     {
       id: 'monte-gordo', city: 'Monte Gordo', area: { pt: 'Algarve', en: 'Algarve' },
       lines: ['Alameda da Índia, Ed. Katavento, Lj. 1', '8900-440 Monte Gordo'],
+      how: { pt: 'No Edifício Katavento, na Alameda da Índia: a clínica é a loja 1, com o logótipo na fachada.', en: 'In the Katavento building on Alameda da Índia: the clinic is shop 1, with the logo on the front.' },
+      photo: 'assets/clinic-monte-gordo.webp',   // the sign from the Google Maps photo (see credits.json)
+      photoAlt: { pt: 'A fachada da clínica de Monte Gordo, com o logótipo Miguel Reis Digital Dentistry', en: 'The front of the Monte Gordo clinic, with the Miguel Reis Digital Dentistry logo' },
       phone: '+351961632803', phoneLabel: '961 632 803',
       maps: 'https://maps.app.goo.gl/xscxmjvRhZ7c7EYC6', geo: [37.1807998, -7.4487994],
       hours: { 0: null, 1: [[9, 12], [14, 19]], 2: [[9, 12], [14, 19]], 3: [[9, 12], [14, 19]], 4: [[9, 12], [14, 19]], 5: [[9, 12], [14, 19]], 6: null },

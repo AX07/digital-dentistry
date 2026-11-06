@@ -10,6 +10,10 @@ Static site (`index.html`, `clinic.config.js`, `assets/`). It deploys to Vercel 
 - **Google Maps, Monte Gordo:** the address, phone 961 632 803 and hours (Mon–Fri 9–12 and 14–19). 4.7 from 36 reviews. Wheelchair-accessible entrance and toilet. Review topics: friendliness 10, urgent care 3, implants 3, clean facilities 3, crowns 2.
 - **Google Maps, Lisboa:** Av. Miguel Bombarda 133A and phone 961 931 629. No reviews. The listed website (digitaldentistry.pt) does not resolve.
 - **Google Form "Marcar Avaliação":** fields Nome and Telefone.
+- **The clinic's feedback (6 November 2026):** Miguel's implantology and university teaching, the team behind both clinics, laser scanning, digital planning and in-house 3D manufacturing. Keep the headline.
+- **Doctoralia** (doctoralia.com.pt/perfil/miguel-reis-2): "Prof. Miguel Reis", the specialist areas (implantology, orthodontics, children's dentistry, endodontics, oral surgery, fixed and removable prosthetics, periodontics), "laboratório de prótese integrado", and a multidisciplinary, evidence-based approach.
+- **Dialnet** (thesis 202688): Miguel Reis de Almeida, PhD, Programa de Doctorado en Ciencias Odontológicas, Universidade de Santiago de Compostela, 2018. **Cancer Biomarkers 2015** (PMC12928514): affiliation, Oral Surgery and Implantology Unit, Faculty of Medicine and Dentistry, Santiago de Compostela.
+- **Google Maps, Lisboa (6 November 2026):** postcode 1050-164 and hours Mon–Fri 10–16. The listing's photos show the street before the clinic opened (another business's sign), so the Lisbon card shows only the map.
 - **Instagram** (@miguelreisdigitaldentistry): two before/after posts, used as the cases. The other account, @miguelreisdd, has only the logo banner.
 
 ## What's on the page
@@ -20,10 +24,12 @@ Static site (`index.html`, `clinic.config.js`, `assets/`). It deploys to Vercel 
 | Results | Both cases as before/after sliders. The scroll draws each slider across until the visitor takes hold of it. |
 | How we work | "Holistic, digital, evidence-based", said the way a patient would: the whole mouth, seen on screen first, only what works. |
 | What holds your new teeth | The 3D implant bridge comes apart part by part (shared `deconstruct` scene). |
+| The technology behind the millimetre | Laser scanning, digital planning, made at the clinic in 3D. Each step has a small looping drawing. |
 | Treatments | Cards with a line drawing each, drawn as they arrive. On hover the card fills navy, a light follows the pointer and the arrow moves. Clicking opens the booking form with that treatment already chosen. Plus the IRS note. |
 | Four steps | Assessment, plan, treatment, follow-up. |
 | Reviews | The Google rating for the brand (4.7, 36 reviews), Google's topic counts and one review word for word. The clinic cards show no per-clinic rating: the Lisbon listing has no reviews yet. |
-| Two clinics | Address, live open/closed status (lunch break included), hours, call, directions and WhatsApp. |
+| Who looks after you | Prof. Miguel Reis (clinical director, his degrees and teaching) and the team's areas, with the in-house prosthesis lab. |
+| Two clinics | A Google map of each (loaded only when the section is near), the Monte Gordo shopfront laid on its map ("look for this sign"), how to get there, live open/closed status, hours, call, directions and WhatsApp. |
 | FAQ, last call, footer | The footer includes the Livro de Reclamações link. |
 | Booking | Clinic → reason → name and mobile, sent to the clinic's own Google Form. Choosing "in pain" shows that clinic's phone number. |
 
@@ -50,7 +56,10 @@ The site posts straight to the existing Google Form (`booking` in `clinic.config
 - The **shopfront photo** is from their Google Maps listing: confirm it is theirs, or take a new one (straight on, the sign centred, landscape and portrait). If the framing changes, re-measure `data-mark` / `data-mark-tall` on the hero.
 - **Patient consent** to show both cases on the website, and the **original photos**. Instagram's copies are only 640 px wide, so they look soft on large screens.
 - The **treatment** in each case (`cases[].title`).
-- **Lisbon opening hours** (`clinics[0].hours`; Google only shows "opens 10 am").
+- **Lisbon opening hours**: Mon–Fri 10–16, from Google (`clinics[0].hours`).
+- **Miguel's credentials:** the master's in oral medicine, oral surgery and implantology, and the OMD specialty in oral surgery, were seen only in a search engine's copy of digitaldentistry.pt/about, which no longer loads. Confirm them, plus the university where he teaches now and his role there, and his OMD number.
+- **The team:** names, roles and photos, and a portrait of Miguel, to replace the logo mark on his card. Confirm "diretor clínico".
+- **A photo of the Lisbon clinic**, ideally straight on, with the sign.
 - The **treatment list** shows only what their public pages back up (checked 6 November 2026): implants (logo, Google topic), crowns (Google topic), full-mouth rehabilitation (the Instagram cases), fillings and replacing old fillings (Google topic and a review), urgent care (Google topic and a walk-in review), cleaning and check-ups (a review), English spoken (a review). Ask the clinic for anything else they offer (veneers, orthodontics, whitening, root canals…) and whether they do fixed bridges on implants, which the 3D section shows.
 - The **written-quote promise**, same-day urgent appointments and English spoken.
 - The **steps** of a first visit and whether the assessment is free.

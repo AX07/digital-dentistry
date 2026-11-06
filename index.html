@@ -57,7 +57,8 @@
       "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:00", "closes": "12:00" }, { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "14:00", "closes": "19:00" }],
       "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.7, "reviewCount": 36 } },
     { "@context": "https://schema.org", "@type": "Dentist", "name": "Miguel Reis Digital Dentistry · Lisboa", "telephone": "+351961931629",
-      "address": { "@type": "PostalAddress", "streetAddress": "Av. Miguel Bombarda 133A", "addressLocality": "Lisboa", "addressCountry": "PT" },
+      "address": { "@type": "PostalAddress", "streetAddress": "Av. Miguel Bombarda 133A", "postalCode": "1050-164", "addressLocality": "Lisboa", "addressCountry": "PT" },
+      "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "10:00", "closes": "16:00" }],
       "geo": { "@type": "GeoCoordinates", "latitude": 38.7363531, "longitude": -9.1507482 } }
   ]
   </script>
@@ -188,6 +189,67 @@
     @media (hover: hover) { .ap-card:hover { transform: translateY(-6px); } .ap-card:hover .ap-art svg { transform: scale(1.06); } }
     @media (prefers-reduced-motion: reduce) { .ap-lens, .ap-scan { animation: none; } .ap-scan { transform: translateY(52px); } .ap-tick { stroke-dashoffset: 0 !important; animation: none !important; } }
 
+    /* technology: three steps on the navy, each drawing keeps a small loop going */
+    .tech-step { border-radius: var(--radius-card); background: rgb(255 255 255 / .04); box-shadow: inset 0 0 0 1px rgb(255 255 255 / .09); padding: 14px 14px 30px; transition: transform .55s var(--ease-spring), background-color .4s ease; }   /* taste-skill-ignore: a hairline drawn inside the card */
+    .tech-step > :not(.tech-art) { padding-inline: 14px; }
+    .tech-art { display: grid; place-items: center; height: 190px; border-radius: calc(var(--radius-card) - 6px); background: rgb(255 255 255 / .035); color: rgb(var(--c-alt)); overflow: hidden; }
+    .tech-art svg { width: min(78%, 260px); height: auto; overflow: visible; transition: transform .7s var(--ease-spring); }
+    .tech-dots circle { fill: #fff; stroke: none; opacity: 0; }
+    .is-in .tech-dots circle { animation: tech-dot 3.2s ease-in-out infinite alternate; }
+    .tech-dots circle:nth-child(3n+1) { animation-delay: .3s; } .tech-dots circle:nth-child(3n+2) { animation-delay: .9s; } .tech-dots circle:nth-child(3n) { animation-delay: 1.5s; }
+    @keyframes tech-dot { 0%, 30% { opacity: 0; } 70%, 100% { opacity: .9; } }
+    .tech-laser { animation: ap-scan 3.2s ease-in-out infinite alternate; }
+    .tech-laser path { stroke: #fff; filter: drop-shadow(0 0 4px rgb(var(--c-alt))); }   /* taste-skill-ignore: the scanner light itself */
+    .tech-axis { stroke-dasharray: 3 5; opacity: .5; }
+    .tech-implant { stroke: #fff; animation: tech-place 4.4s var(--ease-out) infinite; }
+    @keyframes tech-place { 0% { transform: translateY(-22px); opacity: 0; } 18% { opacity: 1; } 45%, 88% { transform: none; opacity: 1; } 100% { transform: none; opacity: 0; } }
+    .tech-head { animation: tech-head 1.6s ease-in-out infinite alternate; }
+    @keyframes tech-head { from { transform: translateX(-16px); } to { transform: translateX(16px); } }
+    .tech-layers path { stroke: #fff; opacity: 0; }
+    .is-in .tech-layers path { animation-duration: 6s; animation-iteration-count: infinite; animation-timing-function: steps(1); }
+    .tech-layers path:nth-child(1) { animation-name: tech-layer-1; }
+    @keyframes tech-layer-1 { 0%, 0.0% { opacity: 0; } 0.1%, 88% { opacity: .95; } 92%, 100% { opacity: 0; } }
+    .tech-layers path:nth-child(2) { animation-name: tech-layer-2; }
+    @keyframes tech-layer-2 { 0%, 10.0% { opacity: 0; } 10.1%, 88% { opacity: .95; } 92%, 100% { opacity: 0; } }
+    .tech-layers path:nth-child(3) { animation-name: tech-layer-3; }
+    @keyframes tech-layer-3 { 0%, 20.0% { opacity: 0; } 20.1%, 88% { opacity: .95; } 92%, 100% { opacity: 0; } }
+    .tech-layers path:nth-child(4) { animation-name: tech-layer-4; }
+    @keyframes tech-layer-4 { 0%, 30.0% { opacity: 0; } 30.1%, 88% { opacity: .95; } 92%, 100% { opacity: 0; } }
+    .tech-layers path:nth-child(5) { animation-name: tech-layer-5; }
+    @keyframes tech-layer-5 { 0%, 40.0% { opacity: 0; } 40.1%, 88% { opacity: .95; } 92%, 100% { opacity: 0; } }
+    .tech-layers path:nth-child(6) { animation-name: tech-layer-6; }
+    @keyframes tech-layer-6 { 0%, 50.0% { opacity: 0; } 50.1%, 88% { opacity: .95; } 92%, 100% { opacity: 0; } }
+    @media (hover: hover) { .tech-step:hover { transform: translateY(-6px); background: rgb(255 255 255 / .07); } .tech-step:hover .tech-art svg { transform: scale(1.06); } }
+    @media (prefers-reduced-motion: reduce) { .tech-laser, .tech-implant, .tech-head { animation: none; } .tech-laser { transform: translateY(52px); } .tech-dots circle, .tech-layers path { animation: none !important; opacity: .9; } }
+
+    /* team: the clinical director on the navy, the team's areas beside him */
+    .team-lead { border-radius: var(--radius-card); background: rgb(var(--c-deep)); color: #fff; padding: 32px 28px; }
+    @media (min-width: 640px) { .team-lead { padding: 44px; } }
+    .team-mark { display: grid; place-items: center; flex: none; width: 76px; height: 76px; border-radius: 50%; background: rgb(255 255 255 / .06); box-shadow: inset 0 0 0 1px rgb(var(--c-alt) / .35); }   /* taste-skill-ignore: a hairline ring like the logo's */
+    .team-mark img { width: 60px; height: 60px; }
+    .team-cred { display: flex; gap: 12px; align-items: flex-start; line-height: 1.5; color: rgb(255 255 255 / .88); }
+    .team-tick { flex: none; width: 20px; height: 20px; margin-top: 2px; color: rgb(var(--c-alt)); }
+    .team-tick path { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset .8s var(--ease-out) calc(var(--i, 0) * 90ms + 250ms); }
+    .is-in .team-tick path, .no-js .team-tick path { stroke-dashoffset: 0; }
+    .team-crew { border-radius: var(--radius-card); background: rgb(var(--c-surface)); padding: 32px 28px; }
+    @media (min-width: 640px) { .team-crew { padding: 44px; } }
+    .team-chip { border-radius: 999px; padding: 9px 16px; font-weight: 700; font-size: .95rem; background: rgb(var(--c-accent-soft)); color: rgb(var(--c-accent-deep)); opacity: 0; transform: translateY(10px) scale(.96); transition: opacity .5s ease calc(var(--i) * 60ms + 200ms), transform .6s var(--ease-spring) calc(var(--i) * 60ms + 200ms), background-color .3s ease, color .3s ease; }
+    .team-chip.is-lab { background: var(--metal); color: rgb(var(--c-ink)); }   /* taste-skill-ignore: brushed metal, the brand's material */
+    .is-in .team-chip, .no-js .team-chip { opacity: 1; transform: none; }
+    @media (hover: hover) { .team-chip:not(.is-lab):hover { background: rgb(var(--c-accent)); color: #fff; } }
+    @media (prefers-reduced-motion: reduce) { .team-chip { opacity: 1; transform: none; transition: none; } }
+
+    /* clinics: map on top (with the shopfront where we have it), then the details */
+    .cl-card { display: flex; flex-direction: column; overflow: hidden; border-radius: var(--radius-card); background: rgb(var(--c-ground)); }
+    .cl-media { position: relative; aspect-ratio: 16 / 10; background: rgb(var(--c-surface-2)); }
+    .cl-map { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: grayscale(.55) contrast(1.02); }
+    .cl-photo { position: absolute; left: 14px; bottom: 14px; width: 38%; max-width: 210px; margin: 0; overflow: hidden; border-radius: 14px; background: #fff; box-shadow: 0 14px 30px -12px rgb(0 0 0 / .45); transform: rotate(-2deg); transition: transform .5s var(--ease-spring); }   /* taste-skill-ignore: a print laid on the map */
+    .cl-photo img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+    .cl-photo figcaption { padding: 6px 10px 8px; font-size: .78rem; font-weight: 700; color: rgb(var(--c-ink)); }
+    @media (hover: hover) { .cl-photo:hover { transform: rotate(0deg) scale(1.04); } }
+    .cl-how { display: flex; gap: 10px; align-items: flex-start; line-height: 1.55; color: rgb(var(--c-ink-soft)); }
+    .cl-how svg { flex: none; width: 20px; height: 20px; margin-top: 2px; color: rgb(var(--c-accent)); }
+
     /* review topics */
     .topic-bar { transform-origin: left; transform: scaleX(var(--w, 0)); transition: transform 1.1s var(--ease-out); }
     .js .topics:not(.is-in) .topic-bar { transform: scaleX(0); }
@@ -234,6 +296,7 @@
       <nav aria-label="Principal" data-en-aria-label="Primary" class="hidden items-center gap-7 text-[0.98rem] font-bold text-ink-soft lg:flex">
         <a class="nav-link hover:text-ink" href="#resultados" data-en="Results">Resultados</a>
         <a class="nav-link hover:text-ink" href="#tratamentos" data-en="Treatments">Tratamentos</a>
+        <a class="nav-link hover:text-ink" href="#equipa" data-en="Team">Equipa</a>
         <a class="nav-link hover:text-ink" href="#clinicas" data-en="Clinics">Clínicas</a>
         <a class="nav-link hover:text-ink" href="#perguntas" data-en="Questions">Perguntas</a>
       </nav>
@@ -322,7 +385,7 @@
     <section id="abordagem" class="bg-surface py-20 sm:py-28" aria-labelledby="ap-title">
       <div class="mx-auto max-w-frame px-5 sm:px-8">
         <h2 id="ap-title" class="display max-w-[20ch] text-[clamp(2.2rem,4.6vw,3.9rem)] [text-wrap:balance]" data-split data-en="We look at the whole mouth, not just the tooth.">Olhamos para a boca toda, não só para o dente.</h2>
-        <!-- TEMPLATE: confirm the digital scan (no impression putty) and the written-quote promise -->
+        <!-- TEMPLATE: confirm the written-quote promise (the digital scan was confirmed by the clinic, 6 Nov 2026) -->
         <ul class="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
           <li class="ap-card" data-reveal style="--i:0">
             <div class="ap-art" aria-hidden="true">
@@ -362,6 +425,68 @@
             <p class="mt-2 leading-relaxed text-ink-soft" data-en="We only suggest what has been shown to work, explained in plain words. The price is in writing before we start.">Só propomos o que está provado que funciona, explicado sem palavras difíceis. O preço fica por escrito antes de começar.</p>
           </li>
         </ul>
+      </div>
+    </section>
+
+
+    <!-- ================= THE TECHNOLOGY BEHIND THE MILLIMETRE. Sources: the clinic's feedback (6 Nov 2026: laser scanning,
+         digital planning, in-house 3D manufacturing) and its Doctoralia profile ("laboratório de prótese integrado").
+         Each step has a drawing that draws itself, then keeps a quiet loop going. ================= -->
+    <section id="tecnologia" class="bg-deep py-20 text-white sm:py-28" aria-labelledby="tech-title">
+      <div class="mx-auto max-w-frame px-5 sm:px-8">
+        <div class="grid gap-6 lg:grid-cols-12 lg:items-end">
+          <h2 id="tech-title" class="display max-w-[15ch] text-[clamp(2.2rem,4.6vw,3.9rem)] [text-wrap:balance] lg:col-span-7" data-split data-en="The technology behind the millimetre.">A tecnologia por trás do milímetro.</h2>
+          <p class="max-w-[30rem] text-[1.1rem] leading-relaxed text-white/70 lg:col-span-5 lg:justify-self-end" data-reveal data-en="From the first scan to the finished tooth, everything is digital and made at the clinic. What we plan on screen is what you get.">Do primeiro exame ao dente final, tudo é digital e feito na clínica. O que planeamos no ecrã é o que recebe na boca.</p>
+        </div>
+        <ol class="mt-14 grid grid-cols-1 gap-4 md:grid-cols-3">
+          <li class="tech-step" data-reveal style="--i:0">
+            <div class="tech-art" aria-hidden="true">
+              <svg viewBox="0 0 160 110" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path class="ap-draw" pathLength="1" d="M58 26c7 0 10 4 17 4s10-4 17-4c9 0 11 8 10 18-1 11-7 14-8 24l-3 14h-6l-4-15H67l-4 15h-6l-3-14c-1-10-7-13-8-24-1-10 1-18 10-18z"/>
+                <g class="tech-dots">
+                  <circle cx="62" cy="38" r="1.3"/><circle cx="75" cy="36" r="1.3"/><circle cx="88" cy="38" r="1.3"/><circle cx="98" cy="42" r="1.3"/>
+                  <circle cx="56" cy="48" r="1.3"/><circle cx="68" cy="47" r="1.3"/><circle cx="82" cy="46" r="1.3"/><circle cx="95" cy="52" r="1.3"/>
+                  <circle cx="62" cy="60" r="1.3"/><circle cx="75" cy="58" r="1.3"/><circle cx="88" cy="59" r="1.3"/><circle cx="66" cy="72" r="1.3"/><circle cx="86" cy="72" r="1.3"/>
+                </g>
+                <path class="ap-draw" pathLength="1" d="M118 14l26 14-6 10-26-14z"/>
+                <path class="ap-draw ap-faint" pathLength="1" d="M114 22L101 36M114 22L104 62"/>
+                <g class="tech-laser"><path d="M50 0h56" stroke-width="2"/></g>
+              </svg>
+            </div>
+            <h3 class="display mt-7 text-[1.4rem]" data-en="Laser scanning">Digitalização a laser</h3>
+            <p class="mt-2 leading-relaxed text-white/70" data-en="A scanner records your mouth in 3D in a few minutes, with no impression putty.">Um scanner regista a boca em 3D, em poucos minutos e sem moldes de massa.</p>
+          </li>
+          <li class="tech-step" data-reveal style="--i:1">
+            <div class="tech-art" aria-hidden="true">
+              <svg viewBox="0 0 160 110" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path class="ap-draw" pathLength="1" d="M28 100V66c0-14 24-22 52-22s52 8 52 22v34"/>
+                <path class="ap-draw ap-faint" pathLength="1" d="M28 66c16-9 88-9 104 0"/>
+                <path class="tech-axis" d="M80 8v96"/>
+                <g class="tech-implant">
+                  <path d="M73 34h14l-1.5 5h-11z"/><path d="M74.5 39h11v28a5.5 5.5 0 0 1-11 0z"/><path d="M74.5 46l11-2.5M74.5 53l11-2.5M74.5 60l11-2.5"/>
+                </g>
+                <path class="ap-draw ap-faint" pathLength="1" d="M104 39v33M100 39h8M100 72h8"/>
+                <path class="ap-draw ap-faint" pathLength="1" d="M56 39v33M52 39h8M52 72h8"/>
+              </svg>
+            </div>
+            <h3 class="display mt-7 text-[1.4rem]" data-en="Digital planning">Planeamento digital</h3>
+            <p class="mt-2 leading-relaxed text-white/70" data-en="Each implant and each tooth is placed on the computer first, to the millimetre, before we begin.">Cada implante e cada dente são posicionados primeiro no computador, ao milímetro, antes de começar.</p>
+          </li>
+          <li class="tech-step" data-reveal style="--i:2">
+            <div class="tech-art" aria-hidden="true">
+              <svg viewBox="0 0 160 110" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path class="ap-draw" pathLength="1" d="M30 100V14h100v86"/>
+                <path class="ap-draw ap-faint" pathLength="1" d="M30 26h100M44 96h72"/>
+                <g class="tech-head"><path d="M71 26h18l-3 9H74z"/><path d="M80 35v5"/></g>
+                <g class="tech-layers" stroke-width="4.5">
+                  <path d="M64 91h32"/><path d="M62 85h36"/><path d="M61 79h38"/><path d="M61 73h38"/><path d="M62 67h36"/><path d="M64 61h12M84 61h12"/>
+                </g>
+              </svg>
+            </div>
+            <h3 class="display mt-7 text-[1.4rem]" data-en="Made at the clinic in 3D">Fabrico 3D na clínica</h3>
+            <p class="mt-2 leading-relaxed text-white/70" data-en="Crowns, bridges and dentures are made in our own prosthesis lab, straight from the digital plan.">Coroas, pontes e próteses são feitas no nosso laboratório de prótese, a partir do plano digital.</p>
+          </li>
+        </ol>
       </div>
     </section>
 
@@ -439,7 +564,59 @@
       </div>
     </section>
 
-    <!-- ================= THE TWO CLINICS ================= -->
+
+    <!-- ================= WHO LOOKS AFTER YOU. Sources (checked 6 Nov 2026):
+         - "Prof. Miguel Reis": the clinic's Doctoralia profile (doctoralia.com.pt/perfil/miguel-reis-2)
+         - doctorate, Universidade de Santiago de Compostela, 2018: Dialnet (tesis 202688), "Programa de Doctorado en Ciencias Odontológicas"
+         - research in the Oral Surgery and Implantology Unit, Faculty of Medicine and Dentistry, Santiago de Compostela: Cancer Biomarkers 2015 (PMC12928514)
+         - university teaching and implantology courses: the clinic's feedback, and a Straumann course leaflet
+         - the specialist areas and the integrated prosthesis lab: the clinic's Doctoralia profile
+         TEMPLATE: confirm the master's and the OMD oral-surgery specialty (seen only in a search engine's copy of digitaldentistry.pt/about,
+         which no longer loads), the current university and role, his OMD number, and the team's names and photos. ================= -->
+    <section id="equipa" class="py-20 sm:py-28" aria-labelledby="team-title">
+      <div class="mx-auto max-w-frame px-5 sm:px-8">
+        <div class="grid gap-6 lg:grid-cols-12 lg:items-end">
+          <h2 id="team-title" class="display max-w-[16ch] text-[clamp(2.2rem,4.6vw,3.9rem)] [text-wrap:balance] lg:col-span-7" data-split data-en="Who looks after you.">Quem cuida de si.</h2>
+          <p class="max-w-[30rem] text-[1.1rem] leading-relaxed text-ink-soft lg:col-span-5 lg:justify-self-end" data-reveal data-en="Both clinics are led by Prof. Miguel Reis, with a team that covers every area of dentistry.">As duas clínicas são dirigidas pelo Prof. Miguel Reis, com uma equipa que cobre as várias áreas da medicina dentária.</p>
+        </div>
+        <div class="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-12">
+          <article class="team-lead lg:col-span-7" data-reveal>
+            <div class="flex items-center gap-5">
+              <span class="team-mark"><img src="assets/mark-white.webp" width="240" height="240" loading="lazy" alt="" /></span>
+              <div>
+                <p class="eyebrow text-alt" data-ui data-en="Clinical director">Diretor clínico</p>   <!-- taste-skill-ignore: a role label -->
+                <h3 class="display mt-1 text-[clamp(1.8rem,3vw,2.5rem)]">Prof. Miguel Reis</h3>
+              </div>
+            </div>
+            <p class="mt-6 max-w-[34rem] text-[1.08rem] leading-relaxed text-white/75" data-en="A dentist dedicated to implants and oral surgery, who also teaches at university and trains other dentists in implantology.">Médico dentista dedicado à implantologia e à cirurgia oral. É também docente universitário e dá formação em implantologia a outros médicos dentistas.</p>
+            <ul class="mt-7 space-y-3">
+            <li class="team-cred" data-reveal style="--i:0"><svg class="team-tick" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M4 10.5l4 4 8-9"/></svg><span data-en="PhD in Dental Sciences, University of Santiago de Compostela">Doutoramento em Ciências Odontológicas, Universidade de Santiago de Compostela</span></li>
+            <li class="team-cred" data-reveal style="--i:1"><svg class="team-tick" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M4 10.5l4 4 8-9"/></svg><span data-en="Research at the Oral Surgery and Implantology Unit, Faculty of Medicine and Dentistry, Santiago de Compostela">Investigação na Unidade de Cirurgia Oral e Implantologia da Faculdade de Medicina e Odontologia de Santiago de Compostela</span></li>
+            <li class="team-cred" data-reveal style="--i:2"><!-- TEMPLATE: confirm --><svg class="team-tick" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M4 10.5l4 4 8-9"/></svg><span data-en="Master’s in Oral Medicine, Oral Surgery and Implantology">Mestrado em Medicina Oral, Cirurgia Oral e Implantologia</span></li>
+            <li class="team-cred" data-reveal style="--i:3"><!-- TEMPLATE: confirm --><svg class="team-tick" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M4 10.5l4 4 8-9"/></svg><span data-en="Specialist in Oral Surgery, Portuguese Dental Association (OMD)">Especialista em Cirurgia Oral pela Ordem dos Médicos Dentistas</span></li>
+            <li class="team-cred" data-reveal style="--i:4"><svg class="team-tick" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M4 10.5l4 4 8-9"/></svg><span data-en="University lecturer and implantology trainer">Docente universitário e formador em implantologia</span></li>
+            </ul>
+          </article>
+          <article class="team-crew lg:col-span-5" data-reveal style="--i:1">
+            <p class="eyebrow text-accent" data-ui data-en="Lisbon and Monte Gordo">Lisboa e Monte Gordo</p>   <!-- taste-skill-ignore: where the team works -->
+            <h3 class="display mt-3 text-[clamp(1.6rem,2.6vw,2.1rem)] [text-wrap:balance]" data-en="A team for every part of the mouth">Uma equipa para cada parte da boca</h3>
+            <p class="mt-4 leading-relaxed text-ink-soft" data-en="Dentists from different areas work together on each case, with our own prosthesis lab in house.">Médicos dentistas de várias áreas trabalham em conjunto em cada caso, com laboratório de prótese próprio.</p>
+            <ul class="mt-6 flex flex-wrap gap-2" aria-label="Áreas" data-en-aria-label="Areas">
+              <li class="team-chip" style="--i:0" data-en="Implantology">Implantologia</li>
+              <li class="team-chip" style="--i:1" data-en="Oral surgery">Cirurgia oral</li>
+              <li class="team-chip" style="--i:2" data-en="Fixed and removable prosthetics">Prótese fixa e removível</li>
+              <li class="team-chip" style="--i:3" data-en="Periodontics">Periodontologia</li>
+              <li class="team-chip" style="--i:4" data-en="Endodontics">Endodontia</li>
+              <li class="team-chip" style="--i:5" data-en="Orthodontics">Ortodontia</li>
+              <li class="team-chip" style="--i:6" data-en="Children's dentistry">Odontopediatria</li>
+              <li class="team-chip is-lab" style="--i:7" data-en="In-house prosthesis lab">Laboratório de prótese</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= THE TWO CLINICS: map, the shopfront where there is a photo, how to get there, live status ================= -->
     <section id="clinicas" class="bg-surface py-20 sm:py-28" aria-labelledby="cl-title">
       <div class="mx-auto max-w-frame px-5 sm:px-8">
         <h2 id="cl-title" class="display max-w-[18ch] text-[clamp(2.2rem,4.6vw,3.9rem)] [text-wrap:balance]" data-split data-en="Two clinics, one way of working.">Duas clínicas, a mesma forma de trabalhar.</h2>
@@ -580,8 +757,8 @@
     const { $, $$, esc, CONFIG, waLink, reduce } = window.Clinic;
     const C = CONFIG.raw, EN = document.documentElement.lang === 'en';
     const t = v => (v && typeof v === 'object' && !Array.isArray(v) ? (EN ? v.en : v.pt) ?? v.pt : v);
-    const W = EN ? { open: 'Open now', closes: 'closes at', closed: 'Closed', opens: 'opens', today: 'today', tomorrow: 'tomorrow', call: 'Call', directions: 'Directions', ask: 'Call or message to book', hoursTbc: 'Opening hours on request', noReviews: 'New clinic: no Google reviews yet', reviews: 'Google reviews', days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], short: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], drag: 'Drag to compare before and after', before: 'Before', after: 'After' }
-                 : { open: 'Aberto agora', closes: 'fecha às', closed: 'Fechado', opens: 'abre', today: 'hoje', tomorrow: 'amanhã', call: 'Ligar', directions: 'Direções', ask: 'Ligue ou envie mensagem para marcar', hoursTbc: 'Horário por marcação', noReviews: 'Clínica nova: ainda sem avaliações no Google', reviews: 'avaliações no Google', days: ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'], short: ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'], drag: 'Arraste para comparar antes e depois', before: 'Antes', after: 'Depois' };
+    const W = EN ? { open: 'Open now', closes: 'closes at', closed: 'Closed', opens: 'opens', today: 'today', tomorrow: 'tomorrow', call: 'Call', directions: 'Directions', mapOf: 'Map of the clinic in', lookFor: 'Look for this sign', ask: 'Call or message to book', hoursTbc: 'Opening hours on request', noReviews: 'New clinic: no Google reviews yet', reviews: 'Google reviews', days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], short: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], drag: 'Drag to compare before and after', before: 'Before', after: 'After' }
+                 : { open: 'Aberto agora', closes: 'fecha às', closed: 'Fechado', opens: 'abre', today: 'hoje', tomorrow: 'amanhã', call: 'Ligar', directions: 'Como chegar', mapOf: 'Mapa da clínica de', lookFor: 'Procure esta fachada', ask: 'Ligue ou envie mensagem para marcar', hoursTbc: 'Horário por marcação', noReviews: 'Clínica nova: ainda sem avaliações no Google', reviews: 'avaliações no Google', days: ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'], short: ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'], drag: 'Arraste para comparar antes e depois', before: 'Antes', after: 'Depois' };
     const hh = h => { const H = Math.floor(h), m = Math.round((h - H) * 60); return EN ? `${H}:${String(m).padStart(2, '0')}` : (m ? `${H}h${String(m).padStart(2, '0')}` : `${H}h`); };
     // content built here arrives after the shared script started watching [data-reveal], so it gets its own watcher
     const revealIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); revealIO.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
@@ -661,25 +838,32 @@
       return groups.map(g => `<div class="flex justify-between gap-4 py-2"><dt class="text-ink-soft">${g.days.length > 1 ? `${W.short[g.days[0]]}–${W.short[g.days[g.days.length - 1]]}` : W.short[g.days[0]]}</dt><dd class="text-right font-bold tnum">${g.h ? g.h.map(([a, b]) => `${hh(a)}–${hh(b)}`).join(' · ') : W.closed}</dd></div>`).join('');
     }
     const clinicsEl = $('[data-clinics]');
-    function renderClinics() {
-      clinicsEl.innerHTML = (C.clinics || []).map(c => {
-        const s = status(c.hours);
-        return `<article class="flex flex-col rounded-[var(--radius-card)] bg-ground p-7 sm:p-9">
+    const statusHtml = c => { const st = status(c.hours); return `<span class="status-dot ${st && st.open ? 'is-open' : ''}" aria-hidden="true"></span>${esc(st ? st.text : W.ask)}`; };
+    clinicsEl.innerHTML = (C.clinics || []).map(c => {
+      const [lat, lng] = c.geo;
+      return `<article class="cl-card">
+        <div class="cl-media">
+          <iframe class="cl-map" src="https://www.google.com/maps?q=${lat},${lng}&z=16&hl=${EN ? 'en' : 'pt-PT'}&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="${esc(W.mapOf)} ${esc(c.city)}"></iframe>
+          ${c.photo ? `<figure class="cl-photo"><img src="${esc(c.photo)}" width="720" height="540" loading="lazy" decoding="async" alt="${esc(t(c.photoAlt))}" /><figcaption>${esc(W.lookFor)}</figcaption></figure>` : ''}
+        </div>
+        <div class="flex flex-1 flex-col p-7 sm:p-9">
           <p class="eyebrow text-accent" data-ui>${esc(t(c.area))}</p>   <!-- taste-skill-ignore: the clinic's area -->
           <h3 class="display mt-3 text-[clamp(2rem,3.6vw,2.9rem)]">${esc(c.city)}</h3>
           <p class="mt-4 text-[1.05rem] leading-relaxed">${c.lines.map(esc).join('<br />')}</p>
-          <p class="mt-5 flex items-center gap-2.5 font-bold"><span class="status-dot ${s && s.open ? 'is-open' : ''}" aria-hidden="true"></span>${esc(s ? s.text : W.ask)}</p>
+          ${c.how ? `<p class="cl-how mt-4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span>${esc(t(c.how))}</span></p>` : ''}
+          <p class="mt-5 flex items-center gap-2.5 font-bold" data-status="${esc(c.id)}">${statusHtml(c)}</p>
           ${c.hours ? `<dl data-ui class="mt-5 divide-y divide-ink/10 border-y border-ink/10">${hoursRows(c.hours)}</dl>` : `<p class="mt-5 border-y border-ink/10 py-3 text-ink-soft">${esc(W.hoursTbc)}</p>`}
           ${c.access ? `<p class="mt-2 text-ink-soft">${esc(t(c.access))}</p>` : ''}
           <div class="mt-auto flex flex-wrap gap-2 pt-7">
             <a class="btn btn-accent px-6 py-3.5" href="tel:${esc(c.phone)}">${esc(W.call)} <span class="tnum">${esc(c.phoneLabel)}</span></a>
-            <a class="btn btn-line px-6 py-3.5" href="${esc(c.maps)}" target="_blank" rel="noopener">${esc(W.directions)}</a>
+            <a class="btn btn-line px-6 py-3.5" href="https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}" target="_blank" rel="noopener">${esc(W.directions)}</a>
             ${c.whatsapp ? `<a class="btn btn-line px-6 py-3.5" href="${esc(waLink(EN ? `Hello, I would like to book at the ${c.city} clinic.` : `Olá, gostaria de marcar na clínica de ${c.city}.`))}" target="_blank" rel="noopener">WhatsApp</a>` : ''}
           </div>
-        </article>`;
-      }).join('');
-    }
-    renderClinics(); setInterval(renderClinics, 60000);
+        </div>
+      </article>`;
+    }).join('');
+    // the open/closed line follows the clock; the rest of the card (and its map) stays put
+    setInterval(() => (C.clinics || []).forEach(c => { const el = clinicsEl.querySelector(`[data-status="${c.id}"]`); if (el) el.innerHTML = statusHtml(c); }), 60000);
 
     /* ---------- "how it starts": the line fills as the section passes ---------- */
     const how = $('[data-how]'), howFill = $('[data-how-fill]');
@@ -750,7 +934,7 @@
       gsap.registerPlugin(ScrollTrigger);
       const ph = matchMedia('(max-width: 767px)').matches;
       // the dark sections, the 3D stage and the clinics open from an inset card to the full width as they arrive
-      $$('#como, #implantes, #clinicas, main > section.bg-deep:last-of-type').forEach(sec => {
+      $$('#tecnologia, #como, #implantes, #clinicas, main > section.bg-deep:last-of-type').forEach(sec => {
         gsap.fromTo(sec, { clipPath: `inset(0% ${ph ? 3 : 4}% 0% ${ph ? 3 : 4}% round ${ph ? 22 : 34}px)` },
           { clipPath: 'inset(0% 0% 0% 0% round 0px)', ease: 'none', scrollTrigger: { trigger: sec, start: 'top bottom', end: 'top 30%', scrub: true } });
       });
