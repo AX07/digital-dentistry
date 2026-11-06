@@ -14,6 +14,8 @@ const files = [
   'index.html',
   configFile,
   'vercel.json',
+  'favicon.ico',
+  'site.webmanifest',
   'README.md',
   'package.json',
   'tailwind.config.js',
@@ -33,6 +35,7 @@ package-lock.json
 tailwind.config.js
 README.md
 assets/credits.json
+assets/logo-dark.png
 `;
 const gitignore = `node_modules/
 .vercel/
@@ -60,7 +63,7 @@ const refs = [
   ...[...html.matchAll(/(?:src|href)="([^"]+)"/g)].map(m => m[1]),
   ...[...html.matchAll(/(?:srcset|imagesrcset)="([^"]+)"/g)].flatMap(m => m[1].split(',').map(s => s.trim().split(' ')[0])),
   ...[...config.matchAll(/'(assets\/[^']+)'/g)].map(m => m[1]),
-].filter(r => r && !/^(https?:|mailto:|tel:|#|data:)/.test(r) && !r.includes('${'));
+].filter(r => r && !/^(https?:|mailto:|tel:|#|data:|\/_vercel\/)/.test(r) && !r.includes('${'));
 const missing = [...new Set(refs)].filter(r => !fs.existsSync(path.join(out, r.split('?')[0])));
 
 let total = 0, count = 0;

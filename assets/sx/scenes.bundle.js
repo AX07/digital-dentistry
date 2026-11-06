@@ -387,11 +387,21 @@
     
     return logoDock(root);
   };
-  const start = () => document.querySelectorAll('.sx[data-sx]').forEach(async (el) => {
-    const run = SCENES[el.dataset.sx];
-    if (!run || el.__sx) return;
-    el.__sx = true;
-    try { await run(el); } catch (e) { el.classList.add('is-rest'); console.warn(`Scene "${el.dataset.sx}" could not start:`, e); }
-  });
+  // Scenes on the first screen start at once. The others (three.js is large) wait until the page has loaded,
+  // or until the visitor scrolls near them, so they never hold up the first paint.
+  const start = () => {
+    const els = [...document.querySelectorAll('.sx[data-sx]')];
+    const io = 'IntersectionObserver' in window && new IntersectionObserver((es) => es.forEach((e) => e.isIntersecting && go(e.target)), { rootMargin: '150% 0px' });
+    const go = async (el) => {
+      if (io) io.unobserve(el);
+      const run = SCENES[el.dataset.sx];
+      if (!run || el.__sx) return;
+      el.__sx = true;
+      try { await run(el); } catch (e) { el.classList.add('is-rest'); console.warn(`Scene "${el.dataset.sx}" could not start:`, e); }
+    };
+    els.forEach((el) => (io ? io.observe(el) : go(el)));
+    const idle = () => setTimeout(() => (window.requestIdleCallback || setTimeout)(() => els.forEach(go)), 1200);
+    document.readyState === 'complete' ? idle() : addEventListener('load', idle, { once: true });
+  };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
 })();

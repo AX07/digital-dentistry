@@ -11,8 +11,8 @@ window.CLINIC = {
 
   brand: {
     // shown one colour, as on the shopfront sign; the palette (brushed aluminium, steel blue, navy) is in index.html :root
-    logo: 'assets/logo-graphite.png',
-    logoLight: 'assets/logo-white.png',
+    logo: 'assets/logo-graphite.webp',
+    logoLight: 'assets/logo-white.webp',
   },
 
   // WhatsApp from the clinic's Linktree; it is also the Lisbon phone line
@@ -66,10 +66,10 @@ window.CLINIC = {
   // the clinic's own before/after pairs (from its Instagram). TEMPLATE: confirm the patients' consent for the
   // website, ask for the original photographs (Instagram's are 640 px), and the treatment of each case.
   cases: [
-    { id: 'b', before: 'assets/case-b-before.jpg', after: 'assets/case-b-after.jpg',
+    { id: 'b', before: 'assets/case-b-before.webp', after: 'assets/case-b-after.webp',
       title: { pt: 'Reabilitação oral', en: 'Full-mouth rehabilitation' },
       alt: { pt: 'Sorriso do mesmo paciente', en: 'The same patient’s smile' } },
-    { id: 'a', before: 'assets/case-a-before.jpg', after: 'assets/case-a-after.jpg',
+    { id: 'a', before: 'assets/case-a-before.webp', after: 'assets/case-a-after.webp',
       title: { pt: 'Reabilitação oral', en: 'Full-mouth rehabilitation' },
       alt: { pt: 'Sorriso da mesma paciente', en: 'The same patient’s smile' } },
   ],

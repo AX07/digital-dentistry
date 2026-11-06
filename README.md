@@ -57,7 +57,15 @@ The site posts straight to the existing Google Form (`booking` in `clinic.config
 - **Reviews** to quote, word for word, with permission.
 - **ERS registration number** of each clinic and the dentists' **OMD numbers**, for the footer.
 - An **email address**, if they want one shown.
-- `og:image` as a full URL once the domain is known.
+- The **domain**: `og:url`, `canonical`, `og:image` and `twitter:image` in the page head point at digital-dentistry-ten.vercel.app. Change them to the clinic's domain at launch, or link previews will keep showing the demo address.
+
+## Link preview, icons and speed
+
+- **Link preview** (WhatsApp, Facebook, iMessage, LinkedIn): `assets/og-image.jpg`, 1200 × 630, the white stacked logo on navy with the treatments and both towns. Previews need full URLs, so the head carries the site's address (see above). WhatsApp and Facebook cache a preview for days; after changing it, refresh it with the Facebook Sharing Debugger.
+- **Icons**, all made from the logo's ring and implant: `favicon.ico` (16, 32 and 48 px), `assets/favicon-32.png`, `assets/apple-touch-icon.png` (iPhone home screen) and `assets/icon-192.png` / `icon-512.png` (Android, through `site.webmanifest`).
+- **Images** are WebP. The header logos are 416 × 90, twice their size on screen.
+- **3D:** three.js (the largest download) loads only after the page has finished loading, or when the visitor scrolls near the 3D section, so it never delays the first screen.
+- **Vercel Web Analytics and Speed Insights:** the two `/_vercel/…/script.js` tags at the end of the page. Both must also be switched on in the Vercel project (*Analytics* and *Speed Insights* tabs). Until then the scripts return 404 and nothing is recorded. Neither uses cookies.
 
 ## Demo
 
