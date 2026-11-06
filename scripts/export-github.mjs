@@ -64,7 +64,7 @@ const refs = [
 const missing = [...new Set(refs)].filter(r => !fs.existsSync(path.join(out, r.split('?')[0])));
 
 let total = 0, count = 0;
-const walk = d => fs.readdirSync(d, { withFileTypes: true }).forEach(e => { const p = path.join(d, e.name); if (e.isDirectory()) walk(p); else { total += fs.statSync(p).size; count++; } });
+const walk = d => fs.readdirSync(d, { withFileTypes: true }).forEach(e => { const p = path.join(d, e.name); if (e.isDirectory()) { if (!keep.has(e.name)) walk(p); } else { total += fs.statSync(p).size; count++; } });
 walk(out);
 console.log(`github/ ready: ${count} files, ${(total / 1024 / 1024).toFixed(1)} MB`);
 if (missing.length) { console.error('Missing files referenced by the page:\n  ' + missing.join('\n  ')); process.exitCode = 1; }
