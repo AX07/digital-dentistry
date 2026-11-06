@@ -1,0 +1,15 @@
+{
+  "name": "miguel-reis-digital-dentistry",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Miguel Reis Digital Dentistry: Lisboa and Monte Gordo. Built from the anchor template.",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/tailwind.css -o ./assets/site.css --minify",
+    "watch:css": "tailwindcss -i ./src/tailwind.css -o ./assets/site.css --watch",
+    "dev": "node scripts/serve.mjs . 4190",
+    "export": "node scripts/export-github.mjs"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.16"
+  }
+}

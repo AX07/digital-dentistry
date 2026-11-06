@@ -1,0 +1,9 @@
+# Only the website is published: index.html, clinic.config.js, assets/ and vercel.json.
+src/
+scripts/
+node_modules/
+package.json
+package-lock.json
+tailwind.config.js
+README.md
+assets/credits.json

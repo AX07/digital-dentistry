@@ -1,0 +1,104 @@
+/* Shared scroll scenes (templates/_core/scenes). Colours come from the page's tokens (--c-ground, --c-ink,
+   --c-ink-soft, --c-accent, --c-surface) with neutral fallbacks, so a scene takes on any template's palette.
+   Without .is-live (no script, reduced motion) every scene is an ordinary section showing its finished state. */
+
+.sx { position: relative; }
+.sx > .sx-stage { position: relative; }
+.sx.is-live { height: calc((var(--hold, 2) + 1) * 100svh); }
+.sx.is-live > .sx-stage { position: sticky; top: 0; height: 100svh; overflow: clip; }
+
+/* ---------- deconstruct ---------- */
+.sx-dec { background: rgb(var(--c-surface, 244 241 236)); color: rgb(var(--c-ink, 20 20 20)); }
+.sx-dec > .sx-stage { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: center; gap: clamp(16px, 3vw, 48px); padding: clamp(88px, 12vh, 120px) clamp(20px, 4vw, 64px) clamp(32px, 6vh, 64px); min-height: 100svh; }
+.sx-dec-copy { position: relative; z-index: 2; max-width: 34rem; }
+.sx-dec-copy h2 { margin: 0; }
+.sx-dec-lead { margin-top: 20px; font-size: clamp(1.0625rem, 1rem + .25vw, 1.1875rem); line-height: 1.55; color: rgb(var(--c-ink-soft, 90 90 90)); transition: opacity .4s ease; }
+.sx-dec-parts { list-style: none; margin: 32px 0 0; padding: 0; display: grid; }
+.sx-dec-parts li { grid-area: 1 / 1; opacity: 0; transform: translateY(14px); transition: opacity .45s ease, transform .6s cubic-bezier(.16, 1, .3, 1); pointer-events: none; }
+.sx-dec-parts li.is-on { opacity: 1; transform: none; pointer-events: auto; }
+.sx-dec-parts h3 { margin: 0; font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem); line-height: 1.1; }
+.sx-dec-parts p { margin: 12px 0 0; font-size: clamp(1.0625rem, 1rem + .25vw, 1.1875rem); line-height: 1.55; color: rgb(var(--c-ink-soft, 90 90 90)); max-width: 30rem; }
+.sx-dec.is-explaining .sx-dec-lead { opacity: .35; }
+.sx-dec-view { position: relative; height: min(78svh, 720px); align-self: center; }
+.sx-dec-view canvas { width: 100%; height: 100%; display: block; touch-action: pan-y; cursor: grab; }
+.sx-dec-labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.sx-dec-tag { position: absolute; left: 0; top: 0; white-space: nowrap; padding: 7px 12px; border-radius: 999px; font-size: 0.9375rem; font-weight: 600; line-height: 1;
+  background: rgb(var(--c-ink, 20 20 20)); color: rgb(var(--c-ground, 255 255 255)); opacity: 0; transition: opacity .3s ease; }
+.sx-dec-tag.is-on { opacity: 1; }
+@media (max-width: 767px) {
+  .sx-dec > .sx-stage { grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) auto; align-items: end; gap: 8px; padding: 76px 20px calc(28px + var(--sx-bottom, 84px)); }   /* --sx-bottom: room for a phone action bar (0 if the page has none) */
+  .sx-dec.is-live .sx-dec-view { grid-row: 1; height: 100%; min-height: 0; }
+  .sx-dec-copy { grid-row: 2; }
+  .sx-dec-lead { margin-top: 10px; }
+  .sx-dec.is-live .sx-dec-lead { display: none; }
+  .sx-dec.is-live.is-explaining .sx-dec-copy h2 { display: none; }   /* room for the part's own text */
+  .sx-dec-parts { margin-top: 14px; min-height: 9.5em; }
+  .sx-dec-view { height: 52svh; }
+}
+/* finished state: the parts as a plain list beside the exploded model */
+.sx-dec.is-rest .sx-dec-parts { gap: 24px; }
+.sx-dec.is-rest .sx-dec-parts li { grid-area: auto; opacity: 1; transform: none; }
+.sx-dec.is-rest .sx-dec-view { height: 70svh; }
+
+/* ---------- smile zoom ---------- */
+.sx-zoom { background: rgb(var(--c-ground, 250 248 245)); }
+.sx-zoom > .sx-stage { height: 100svh; min-height: 560px; overflow: clip; }
+.sx-zoom-photo, .sx-zoom-close { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; will-change: transform; }
+.sx-zoom-close { opacity: 0; }
+.sx-zoom-shade { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgb(0 0 0 / .5) 0, rgb(0 0 0 / .15) 45%, rgb(0 0 0 / 0) 70%), linear-gradient(0deg, rgb(0 0 0 / .35), rgb(0 0 0 / 0) 40%); }   /* taste-skill-ignore: neutral scrim under text on a photograph */
+.sx-zoom-copy { position: absolute; z-index: 2; left: clamp(20px, 4vw, 64px); bottom: clamp(32px, 9vh, 96px); max-width: min(34rem, 88vw); color: #fff; will-change: transform, opacity; }
+.sx-zoom-after { position: absolute; z-index: 2; right: clamp(20px, 4vw, 64px); bottom: clamp(32px, 9vh, 96px); max-width: 22ch; margin: 0; color: #fff; opacity: 0; font-size: clamp(1.375rem, 1rem + 1.2vw, 2.25rem); line-height: 1.15; }
+.sx-zoom.is-rest .sx-zoom-after { display: none; }
+
+/* ---------- door ---------- */
+.sx-door-street { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; object-fit: cover; will-change: transform; }
+.sx-door.is-live .sx-door-photo { will-change: transform; }
+.sx-door.is-live.has-street .sx-door-photo { opacity: 0; -webkit-mask-image: radial-gradient(ellipse 34% 40% at var(--door-cx, 50%) var(--door-cy, 50%), #000 62%, transparent 100%); mask-image: radial-gradient(ellipse 34% 40% at var(--door-cx, 50%) var(--door-cy, 50%), #000 62%, transparent 100%); }   /* taste-skill-ignore: a mask, not a fill: the close photograph melts into the street instead of arriving as a card */
+.sx-door:not(.is-live) .sx-door-street { display: none; }   /* no script or reduced motion: the door photograph alone */
+.sx-door-way { position: absolute; z-index: 2; left: 0; top: 0; overflow: hidden; visibility: hidden; pointer-events: none; transform-style: preserve-3d; }
+.sx-door.is-live .sx-door-way.is-on { visibility: visible; }
+.sx-door-way > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.3); transform-origin: 50% 55%; }
+.sx-door-leaf { position: absolute; inset: 0; background-repeat: no-repeat; backface-visibility: visible; }
+.sx-door-leaf::after { content: ""; position: absolute; inset: 0; background: #000; opacity: var(--shade, 0); }
+.sx-door [data-door-after] { opacity: 0; }
+.sx-door.is-rest [data-door-after] { display: none; }
+
+/* ---------- scan reveal ---------- */
+/* without motion: the two photographs one above the other, each labelled */
+.sx-scan-frame { position: relative; margin: 0; display: grid; gap: 6px; overflow: hidden; }
+.sx-scan-frame > * { grid-column: 1; }
+.sx-scan-frame img { display: block; width: 100%; height: auto; }
+.sx-scan-before, [data-scan-tag="before"] { grid-row: 1; }
+.sx-scan-after, [data-scan-tag="after"] { grid-row: 2; }
+.sx-scan-tag { position: relative; z-index: 2; align-self: start; justify-self: start; margin: 12px; padding: 6px 11px; border-radius: 999px; font-size: 0.8125rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; line-height: 1;
+  background: rgb(var(--c-ink, 20 20 20) / .78); color: #fff; }
+[data-scan-tag="after"] { background: rgb(var(--c-scan, 64 214 194)); color: rgb(var(--c-ink, 20 20 20)); }
+.sx-scan-beam, .sx-scan-band { display: none; }
+/* live: one picture; the "after" shows above the beam as it travels down */
+.sx-scan.is-live .sx-scan-frame { display: block; aspect-ratio: var(--scan-ratio, 8 / 3); }
+.sx-scan.is-live .sx-scan-frame img { position: absolute; inset: 0; height: 100%; object-fit: cover; }
+.sx-scan.is-live .sx-scan-after { clip-path: inset(0 0 calc((1 - var(--scan, 0)) * 100%) 0); }
+.sx-scan.is-live .sx-scan-tag { position: absolute; left: 0; top: 0; }
+.sx-scan.is-live [data-scan-tag="after"] { left: auto; right: 0; opacity: 0; }
+.sx-scan.is-live .sx-scan-beam, .sx-scan.is-live .sx-scan-band { display: block; position: absolute; z-index: 1; left: 0; right: 0; top: 0; pointer-events: none; opacity: var(--beam, 0); will-change: transform; }
+.sx-scan-beam { height: 2px; margin-top: -1px; background: rgb(var(--c-scan, 64 214 194)); box-shadow: 0 0 14px 2px rgb(var(--c-scan, 64 214 194) / .65); transform: translate3d(0, calc(var(--scan, 0) * var(--fh, 0px)), 0); }   /* taste-skill-ignore: the glow is the scanner light itself */
+.sx-scan-band { height: 26%; transform: translate3d(0, calc(var(--scan, 0) * var(--fh, 0px) - 100%), 0);
+  background: repeating-linear-gradient(0deg, rgb(var(--c-scan, 64 214 194) / .28) 0 1px, transparent 1px 5px);   /* taste-skill-ignore: scan lines trailing the beam */
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000); mask-image: linear-gradient(180deg, transparent, #000); }   /* taste-skill-ignore: scan lines trailing the beam, not a decorative fill */
+.sx-scan [data-scan-after] { opacity: 0; }
+.sx-scan:not(.is-live) [data-scan-after] { opacity: 1; }
+.sx-scan:not(.is-live) [data-scan-read] { display: none; }
+.sx-scan:not(.is-live) [data-scan-step] { --on: 1; }
+.sx-scan [data-scan-step].is-on { --on: 1; }
+
+/* ---------- logo dock ---------- */
+.sx-dock > .sx-stage { min-height: 100svh; overflow: clip; }
+.sx-dock-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; will-change: transform, opacity; }
+.sx-dock-logo { position: absolute; z-index: 3; display: block; transform-origin: 0 0; will-change: transform, opacity; pointer-events: none; }
+.sx-dock-logo.is-light { opacity: 0; }
+/* without motion the photograph sits under the words like an ordinary hero, and the logo stays in the header */
+.sx-dock:not(.is-live) .sx-dock-logo { display: none; }
+.sx-dock [data-dock-in] { opacity: 0; }
+.sx-dock:not(.is-live) [data-dock-in] { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) { .sx * { transition: none !important; } }
